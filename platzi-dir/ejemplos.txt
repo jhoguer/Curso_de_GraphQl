@@ -1,0 +1,49 @@
+mutation {
+  createStudent(input: {
+    name: "Estudiante 2"
+    email: "estu2@gmail.com"
+  }){
+    _id
+    name
+    email
+  }
+}
+
+mutation{
+  editStudent(_id: "5e90ef675ed16216f7de43ff", input: {
+    name: "Jhon Guerrero"
+    email: "jhleid@hotmail.com"
+  }){
+    _id
+    name
+    email
+  }
+}
+
+mutation{
+  editCourse(_id: "5e8fd93968b85c7e0315028c", input:{
+    title: "Super titulo"
+  }){
+    _id
+    title
+  }
+}
+
+mutation{
+  editStudent(_id: "5e90ef785ed16216f7de4400", input:{
+    name: "Simon Alejandro Guerrero"
+    email: "simong@gmail.com"
+  }){
+    _id
+    name
+    email
+  }
+}
+
+mutation{
+  deleteStudent(_id: "5e90ef675ed16216f7de43ff")
+}
+
+mutation{
+  deleteStudent(_id: "5e90facc2302811f7b030729")
+}
