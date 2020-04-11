@@ -2,6 +2,7 @@
 
 const connectDB = require('./db')
 const { ObjectId } = require('mongodb')
+const errorhandler = require('./errorHandler')
 
 module.exports = {
   createCourse: async (root, { input }) => {
@@ -20,7 +21,7 @@ module.exports = {
       newCourse._id = course.insertedId
       console.log(newCourse)
     } catch (error) {
-      console.log(error)
+      errorhandler(error)
     }
     return newCourse
   },
@@ -34,7 +35,7 @@ module.exports = {
       input._id = student.insertedId
 
     } catch (error) {
-      console.log(error)
+      errorhandler(error)
 
     }
     return input
@@ -49,7 +50,7 @@ module.exports = {
       await db.collection('courses').updateOne({ _id: ObjectId(_id)}, { $set: input } )
       course = db.collection('courses').findOne( { _id: ObjectId(_id) } )
     } catch (error) {
-      console.log(error)
+      errorhandler(error)
     }
     return course
   },
@@ -62,7 +63,7 @@ module.exports = {
       await db.collection('students').updateOne({ _id: ObjectId(_id)}, { $set: input } )
       student = db.collection('students').findOne( { _id: ObjectId(_id) } )
     } catch (error) {
-      console.log(error)
+      errorhandler(error)
     }
     return student
   },
@@ -74,7 +75,7 @@ module.exports = {
       await db.collection('students').deleteOne( { _id: ObjectId(_id) } )
 
     } catch ( error ) {
-      console.log( error )
+      errorhandler(error)
     }
     return true
   },
@@ -86,7 +87,7 @@ module.exports = {
       await db.collection('courses').deleteOne( { _id: ObjectId(_id) } )
 
     } catch ( error ) {
-      console.log( error )
+      errorhandler(error)
     }
     return true
   },
@@ -104,7 +105,7 @@ module.exports = {
 
       await db.collection('courses').updateOne( { _id: ObjectId(courseId) }, {$addToSet: { people: ObjectId(personId) } } )
     } catch (error) {
-      console.log(error)
+      errorhandler(error)
     }
     return course
   }
