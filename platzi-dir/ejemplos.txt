@@ -47,3 +47,33 @@ mutation{
 mutation{
   deleteStudent(_id: "5e90facc2302811f7b030729")
 }
+
+
+5e910fcdacbac527d81d6c1e
+5e910fb4acbac527d81d6c1d
+5e910f82acbac527d81d6c1c
+5e910f73acbac527d81d6c1b
+
+mutation{
+  addPeople(courseId: "5e8ff9a3b176ff0e3d4d8026", personId: "5e910fcdacbac527d81d6c1e"){
+    _id
+    title
+  }
+}
+
+5e8ff9a3b176ff0e3d4d8026
+
+{
+  getCourses{
+    _id
+    title
+    teacher
+    description
+    topic
+    people{
+      _id
+      name
+      email
+    }
+  }
+}

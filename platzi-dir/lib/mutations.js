@@ -89,5 +89,23 @@ module.exports = {
       console.log( error )
     }
     return true
+  },
+  addPeople: async ( root, { courseId, personId}) => {
+    let db
+    let course
+    let person
+
+    try {
+      db = await connectDB()
+      course = await db.collection('courses').findOne( { _id: ObjectId(courseId) } )
+      person = await db.collection('students').findOne( { _id: ObjectId(personId) } )
+
+      if ( !course || !person ) throw new Error('La persona o el curso no existe!!!')
+
+      await db.collection('courses').updateOne( { _id: ObjectId(courseId) }, {$addToSet: { people: ObjectId(personId) } } )
+    } catch (error) {
+      console.log(error)
+    }
+    return course
   }
 }
