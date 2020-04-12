@@ -91,3 +91,65 @@ mutation agregarPersonaACurso($curso: ID!, $persona: ID!){
   "curso": "5e8fe729e7562506308bf880",
   "persona": "5e910f82acbac527d81d6c1c"
 }
+
+{
+  "createInput": {
+  "title": "Curso de Css",
+  "teacher": "SuperMan",
+  "description": "El mejor de Css",
+  "topic": "Frontend"
+  
+	}
+}
+
+mutation createNewCourse($createInput: CourseInput!){
+  createCourse(input: $createInput)
+}
+
+
+// Creando un nuevo Monitor
+mutation createNewMonitor($monitorInput: PersonInput!){
+  createPerson(input: $monitorInput){
+    _id
+    name
+  }
+}
+
+{
+  "monitorInput": {
+    "name": "Pepito Perz",
+    "email": "pepo@gamil.com",
+    "phone": "4242455-99"
+  }
+}
+
+// Consulta las personas, si es Monitor, muestra el phone. Si es Student, muestra el avatar
+{
+  getPeople{
+    _id
+    name
+    email
+    ... on Monitor{
+      phone
+    }
+    ... on Student{
+      avatar
+    }
+  }
+}
+
+// Crear un nuevo estudiante
+mutation createNewStudent($studentInput: PersonInput!){
+  createPerson(input: $studentInput){
+    _id
+    name
+  }
+}
+
+{
+  "studentInput": {
+    "name": "Aang",
+    "email": "aang@gmail.com",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcThuB5b0TO6F40mF3AZ0bvBXpCiwXuJLbTb9W2a_UPBBnh3A7mN&usqp=CAU"
+  }
+}

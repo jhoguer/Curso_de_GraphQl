@@ -17,13 +17,13 @@ module.exports = {
     }
     return courses
   },
-  getCourse: async (root, { id }) => {
+  getCourse: async ( root, { id } ) => {
     let db
     let course
 
     try {
       db = await connectDB()
-      course = await db.collection('courses').findOne({ _id: ObjectId(id) })
+      course = await db.collection('courses').findOne( { _id: ObjectId(id) } )
 
     } catch (error) {
       errorHandler(error)
@@ -31,25 +31,25 @@ module.exports = {
 
     return course
   },
-  getStudents: async () => {
+  getPeople: async () => {
     let db
     let students = []
 
     try {
       db = await connectDB()
-      students = await db.collection('students').find().toArray()
+      students = await db.collection( 'students' ).find().toArray()
     } catch (error) {
       errorHandler(error)
     }
     return students
   },
-  getStudent: async ( root, { id } ) => {
+  getPerson: async ( root, { id } ) => {
     let db
     let student
 
     try {
       db = await connectDB()
-      student = await db.collection('students').findOne( { _id: ObjectId(id) } )
+      student = await db.collection( 'students' ).findOne( { _id: ObjectId(id) } )
     } catch (error) {
       errorHandler(error)
     }
