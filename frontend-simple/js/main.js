@@ -2,7 +2,8 @@
 
 const Handlebars = require('handlebars')
 const { request } = require('graphql-request')
-const endpoint = 'http://localhost:3000/api'
+
+const endpoint = 'http://localhost:3001/api'
 
 const template = `
 {{#with error}}
@@ -50,9 +51,13 @@ async function search () {
   const data = { keyword: document.getElementById('search').value }
   let result, html
 
+  console.log(data)
+
   try {
     result = await request(endpoint, query, data)
+    console.log(result)
     html = templateData({ items: result.searchItems })
+    console.log(html)
   } catch (error) {
     html = templateData({ error: error })
   }
