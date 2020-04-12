@@ -10,7 +10,7 @@ type Course {
   title: String!
   teacher: String
   description: String!
-  topic: String
+  topic: String @deprecated
   people: [Student]
   level: Level
 }
@@ -22,10 +22,16 @@ interface Person {
 }
 
 type Student implements Person {
+  _id: ID!
+  name: String!
+  email: String!
   avatar: String
 }
 
 type Monitor implements Person {
+  _id: ID!
+  name: String!
+  email: String!
   phone: String
 }
 

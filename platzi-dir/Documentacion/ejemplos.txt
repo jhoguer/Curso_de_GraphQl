@@ -153,3 +153,25 @@ mutation createNewStudent($studentInput: PersonInput!){
     "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcThuB5b0TO6F40mF3AZ0bvBXpCiwXuJLbTb9W2a_UPBBnh3A7mN&usqp=CAU"
   }
 }
+
+
+// Directivas
+query getPeopleData($monitor: Boolean!, $avatar: Boolean!){
+  getPeople{
+    _id
+    ... on Monitor @include(if: $monitor){
+      phone
+    	email
+    }
+    ... on Student @include(if: $avatar){
+      avatar
+      name
+    }
+
+  }
+}
+
+{
+  "monitor": true,
+  "avatar": true
+}
